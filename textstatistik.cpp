@@ -82,9 +82,13 @@ void printStatistic(std::string& path, unsigned int begin, unsigned int end) {
 
 	std::cout << "*** Häufigkeit der Buchstaben ***\n";
 
-	for (auto p : charCount) {
+	// ein einzelnes element einer map wird zum "pair" 
+	// (nach langer recherche im internet gefunden, wollte vermeiden "auto" als datentyp zu nutzen)
+	for (std::pair<char, int> p : charCount) {
 		std::cout << std::setw(15) << p.first << "\t\t" << std::setw(5) << p.second << "\n";
 	}
+
+
 	std::cout << "\n\n*** Häufigkeit der Wörter ***\n";
 
 	for (int i = begin; i <= end; i++)
