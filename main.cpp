@@ -12,7 +12,7 @@ struct Menu {
 };
 
 const Menu mMenu[] {
-        {'0', "buergschaft",  "buergschaft.txt"},
+        {'0', "buergschaft",    "buergschaft.txt"},
         {'1', "glocke",         "glocke.txt"}
 };
 
