@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <set>
+#include <map>
 #include "textstatistik.h"
 
 bool isNotAlpha(char c) {
@@ -12,7 +13,7 @@ bool isNotAlpha(char c) {
 	return !isalpha(static_cast<unsigned char>(c));
 }
 
-// liest eine textdatei ein und gibt einen vektor mit den einzelnen wörtern in kleinbuchstaben zurück
+// liest eine textdatei ein und gibt einen vektor mit den einzelnen wï¿½rtern in kleinbuchstaben zurï¿½ck
 std::vector<std::string> readFile(std::string path) {
 	std::vector<std::string> words;
 	std::string word;
@@ -23,13 +24,13 @@ std::vector<std::string> readFile(std::string path) {
 	std::ifstream file(path);
 
 	if (!file.is_open()) {
-		// wenn datei nicht existiert leeren vektor zurückgeben
+		// wenn datei nicht existiert leeren vektor zurï¿½ckgeben
 		return words;
 	}
 
 	while (file >> word) {
 		// remove_if verschiebt alle zu entfernenden zeichen ans ende und gibt den iterator ab wann die "entfernten"
-		// zeichen anfangen zurück
+		// zeichen anfangen zurï¿½ck
 		std::string::iterator  it = std::remove_if(word.begin(), word.end(), isNotAlpha);
 		// erst hier wird wirklich was aus der string entfernt
 		word.erase(it, word.end());
@@ -43,11 +44,11 @@ std::vector<std::string> readFile(std::string path) {
 	return words;
 }
 
-std::map<char, int> letterFreq(std::vector<std::string>& words) {
-	// leere map anlegen in der die buchstaben und ihre häufigkeit gespeichert werden
+std::map<char, int> letterFreq(const std::vector<std::string>& words) {
+	// leere map anlegen in der die buchstaben und ihre hï¿½ufigkeit gespeichert werden
 	std::map<char, int> frequencyMap;
 
-	// durch die buchstaben iterieren und mitzählen
+	// durch die buchstaben iterieren und mitzï¿½hlen
 	for (std::string word : words) {
 		for (char c : word) {
 			frequencyMap[c]++;
@@ -57,12 +58,12 @@ std::map<char, int> letterFreq(std::vector<std::string>& words) {
 	return frequencyMap;
 }
 
-// gibt nur wörter von länge n in einem set zurück
-std::set<std::string> wordFreq(std::vector<std::string>& words, unsigned int n) {
-	// leeres set anlegen in der die wörter hinterlegt werden
+// gibt nur wï¿½rter von lï¿½nge n in einem set zurï¿½ck
+std::set<std::string> wordFreq(const std::vector<std::string>& words, const unsigned int n) {
+	// leeres set anlegen in der die wï¿½rter hinterlegt werden
 	std::set<std::string> wordSet;
 
-	// alle wörter durchlaufen und wenn diese n zeichen lang sind in die map aufnehmen
+	// alle wï¿½rter durchlaufen und wenn diese n zeichen lang sind in die map aufnehmen
 	for (std::string word : words) {
 		if (word.length() == n) {
 			wordSet.insert(word);
@@ -76,11 +77,11 @@ void printStatistic(std::string& path, unsigned int begin, unsigned int end) {
 	// vektor mit worten aus datei lesen
 	std::vector<std::string> words = readFile(path);
 
-	// häufigkeitsmap für die buchstaben machen
+	// hï¿½ufigkeitsmap fï¿½r die buchstaben machen
 	std::map<char, int> charCount = letterFreq(words);
 
 
-	std::cout << "*** Häufigkeit der Buchstaben ***\n";
+	std::cout << "*** Hï¿½ufigkeit der Buchstaben ***\n";
 
 	// ein einzelnes element einer map wird zum "pair" 
 	// (nach langer recherche im internet gefunden, wollte vermeiden "auto" als datentyp zu nutzen)
@@ -89,7 +90,7 @@ void printStatistic(std::string& path, unsigned int begin, unsigned int end) {
 	}
 
 
-	std::cout << "\n\n*** Häufigkeit der Wörter ***\n";
+	std::cout << "\n\n*** Hï¿½ufigkeit der Wï¿½rter ***\n";
 
 	for (int i = begin; i <= end; i++)
 	{
@@ -98,7 +99,7 @@ void printStatistic(std::string& path, unsigned int begin, unsigned int end) {
 
 	// Benutzereingabe
 	int n;
-	std::cout << "Wörter mit n Buchstaben anzeigen.\nn: ";
+	std::cout << "Wï¿½rter mit n Buchstaben anzeigen.\nn: ";
 	std::cin >> n;
 
 	for (std::string word : wordFreq(words, n))
