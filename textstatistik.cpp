@@ -19,6 +19,7 @@ std::vector<std::string> readFile(std::string path) {
 	std::string word;
 
 	// pfad anpassen (nimmt an dass die txt dateien direkt im root vom projektordner liegen)
+    // PROJECT_DIR ist in CMakeLists festgelegt
 	path = std::string(PROJECT_DIR) + "/" + path;
 
 	std::ifstream file(path);
@@ -73,7 +74,7 @@ std::set<std::string> wordFreq(const std::vector<std::string>& words, const unsi
 	return wordSet;
 }
 
-void printStatistic(std::string& path, unsigned int begin, unsigned int end) {
+void printStatistic(std::string& path, unsigned int minLength, unsigned int maxLength) {
 	// vektor mit worten aus datei lesen
 	std::vector<std::string> words = readFile(path);
 
@@ -92,7 +93,7 @@ void printStatistic(std::string& path, unsigned int begin, unsigned int end) {
 
 	std::cout << "\n\n*** H�ufigkeit der W�rter ***\n";
 
-	for (int i = begin; i <= end; i++)
+	for (int i = minLength; i <= maxLength; i++)
 	{
 		std::cout << std::setw(15) << i << "\t\t" << std::setw(5) << wordFreq(words, i).size() << "\n";
 	}

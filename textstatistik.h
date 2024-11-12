@@ -15,4 +15,4 @@
 // std::set<std::string> wordFreq(std::vector<std::string>& words, unsigned int n);
 
 // tabelle ausgeben
-void printStatistic(std::string& path, unsigned int begin, unsigned int end);
+void printStatistic(std::string& path, unsigned int minLength, unsigned int maxLength);

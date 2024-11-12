@@ -1,8 +1,8 @@
 #include <iostream>
 #include "textstatistik.h"
 
-unsigned int min = 2;
-unsigned int max = 20;
+unsigned int minLength = 2;
+unsigned int maxLength = 20;
 
 
 struct Menu {
@@ -20,6 +20,7 @@ int main() {
 
     char command;
     std::cout << "*** TEXTSTATISTIK ***" << std::endl;
+    // alle menüpunkte anzeigen
     for(std::size_t i = 0; i < sizeof(mMenu)/ sizeof(Menu); ++i)
     {
         std::cout << "[" << mMenu[i].item << "] " << mMenu[i].menuText
@@ -31,7 +32,7 @@ int main() {
         if(command == mMenu[i].item)
         {
             std::string path = mMenu[i].Path;
-            printStatistic(path, min, max);
+            printStatistic(path, minLength, maxLength);
         }
     }
 
